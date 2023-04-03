@@ -1,4 +1,3 @@
-
 /* consegna
 Descrizione:
 Rifare l'esercizio della to do list. Questa volta però ogni todo sarà un oggetto, 
@@ -24,13 +23,18 @@ Bonus:
 /* strumenti: 
 
 */
+
+
 const { createApp } = Vue
-  
-  createApp({
-    data() {
-      return {
-        newTask: "",
-        tasks: [
+
+const app = createApp({
+  data() {
+    return {
+        elementAdd:{
+            text: '',
+            done: false
+        },
+        task:[
           {
             text: "Fare spesa",
             done: false,
@@ -47,9 +51,20 @@ const { createApp } = Vue
             text: "Fare l'elenco",
             done: false,
           },
-          
-        ],
-      }
-    },
+            
+        ]
+    }
+  },
+  methods: {
+   removeElement(index){
+    this.task.splice(index,1)
+   },
+   addElement(){
+    this.task.unshift( { ...this.elementAdd } )
 
-  }).mount('#app')
+   },
+    }
+  
+})
+
+app.mount('#app')
